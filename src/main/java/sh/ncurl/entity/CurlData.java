@@ -8,7 +8,7 @@ import java.util.List;
  * @author bohan
  */
 @Data
-public class ClientRequest {
+public class CurlData {
     private List<String> commands;
     private String response;
 }
