@@ -9,6 +9,6 @@ import java.util.List;
  */
 @Data
 public class CurlData {
-    private List<String> commands;
+    private String commands;
     private List<Content> contents;
 }
