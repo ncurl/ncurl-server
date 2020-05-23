@@ -10,5 +10,5 @@ import lombok.Data;
 public class CurlResult {
     private String id;
     private String webUrl;
-    private Integer expire;
+    private Long expire;
 }

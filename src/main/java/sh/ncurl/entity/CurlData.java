@@ -14,5 +14,5 @@ public class CurlData {
     /**
      * 有效时间单位秒
      */
-    private Integer expire;
+    private Long expire;
 }
