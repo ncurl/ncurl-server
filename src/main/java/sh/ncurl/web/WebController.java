@@ -4,6 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import sh.ncurl.entity.CurlData;
+import sh.ncurl.entity.CurlResult;
 import sh.ncurl.service.NcurlService;
 
 /**
@@ -29,7 +30,7 @@ public class WebController {
     }
 
     @PostMapping("/api/instants")
-    public String post(@RequestBody CurlData curlData) {
+    public CurlResult post(@RequestBody CurlData curlData) {
         return ncurlService.save(curlData);
     }
 }

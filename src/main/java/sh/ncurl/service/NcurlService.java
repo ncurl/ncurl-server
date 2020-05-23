@@ -1,9 +1,11 @@
 package sh.ncurl.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 import sh.ncurl.entity.CurlData;
+import sh.ncurl.entity.CurlResult;
 import sh.ncurl.util.IdUtil;
 
 import java.time.Duration;
@@ -15,6 +17,9 @@ import java.time.Duration;
 @Service
 public class NcurlService {
 
+    @Value("${web.url.prefix}")
+    private String webUrlPrefix;
+
     @Autowired
     private RedisTemplate<String, CurlData> redisTemplate;
 
@@ -22,7 +27,7 @@ public class NcurlService {
         return redisTemplate.opsForValue().get(id);
     }
 
-    public String save(CurlData curlData) {
+    public CurlResult save(CurlData curlData) {
         String id = IdUtil.generate();
         Integer expire = curlData.getExpire();
         Duration expireDuration = Duration.ofSeconds(1800);
@@ -30,7 +35,10 @@ public class NcurlService {
             expireDuration = Duration.ofSeconds(expire);
         }
         redisTemplate.opsForValue().set(id, curlData, expireDuration);
-        return id;
+        CurlResult curlResult = new CurlResult();
+        curlResult.setId(id);
+        curlResult.setWebUrl(webUrlPrefix + id);
+        return curlResult;
     }
 
 }
