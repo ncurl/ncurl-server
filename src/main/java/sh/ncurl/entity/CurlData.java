@@ -11,4 +11,8 @@ import java.util.List;
 public class CurlData {
     private String commands;
     private List<Content> contents;
+    /**
+     * 有效时间单位秒
+     */
+    private Integer expire;
 }

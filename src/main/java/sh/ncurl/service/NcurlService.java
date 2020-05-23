@@ -24,7 +24,12 @@ public class NcurlService {
 
     public String save(CurlData curlData) {
         String id = IdUtil.generate();
-        redisTemplate.opsForValue().set(id, curlData, Duration.ofHours(24));
+        Integer expire = curlData.getExpire();
+        Duration expireDuration = Duration.ofSeconds(1800);
+        if ( expire != null && expire > 0) {
+            expireDuration = Duration.ofSeconds(expire);
+        }
+        redisTemplate.opsForValue().set(id, curlData, expireDuration);
         return id;
     }
 

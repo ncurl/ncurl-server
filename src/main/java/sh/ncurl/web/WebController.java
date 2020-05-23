@@ -2,7 +2,6 @@ package sh.ncurl.web;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import sh.ncurl.entity.CurlData;
 import sh.ncurl.service.NcurlService;
@@ -12,8 +11,8 @@ import sh.ncurl.service.NcurlService;
  * @date 2020/5/3
  */
 @Slf4j
-@Controller
-@RestController("/")
+@RestController
+@RequestMapping("")
 public class WebController {
 
     @Autowired
