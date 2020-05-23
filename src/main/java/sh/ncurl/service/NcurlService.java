@@ -38,6 +38,7 @@ public class NcurlService {
         CurlResult curlResult = new CurlResult();
         curlResult.setId(id);
         curlResult.setWebUrl(webUrlPrefix + id);
+        curlResult.setExpire(expire);
         return curlResult;
     }
 
