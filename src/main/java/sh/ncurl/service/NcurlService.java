@@ -24,7 +24,12 @@ public class NcurlService {
     private RedisTemplate<String, CurlData> redisTemplate;
 
     public CurlData get(String id) {
-        return redisTemplate.opsForValue().get(id);
+        CurlData curlData = redisTemplate.opsForValue().get(id);
+        if (curlData == null) {
+            return null;
+        }
+        curlData.setExpire(redisTemplate.getExpire(id));
+        return curlData;
     }
 
     public CurlResult save(CurlData curlData) {
